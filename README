@@ -1,0 +1,10 @@
+export CROSS_COMPILE=/home/user/android-ndk/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86_64/bin/arm-linux-androideabi-
+export SYSROOT=/home/user/android-ndk/platforms/android-19/arch-arm
+make
+adb push mkbootimg/mkbootimg /data/local/tmp/
+adb push mkbootimg/unpackbootimg /data/local/tmp/
+adb shell
+chmod 755 /data/local/tmp/mkbootimg
+chmod 755 /data/local/tmp/unpackbootimg
+/data/local/tmp/mkbootimg
+/data/local/tmp/unpackbootimg
