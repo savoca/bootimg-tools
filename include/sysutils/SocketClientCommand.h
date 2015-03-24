@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2006 The Android Open Source Project
+ * Copyright (C) 2012 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef _SOCKETCLIENTCOMMAND_H
+#define _SOCKETCLIENTCOMMAND_H
 
-#ifndef _CUTILS_TZTIME_H
-#define _CUTILS_TZTIME_H
+#include <sysutils/SocketClient.h>
 
-// TODO: fix both callers to just include <bionic_time.h> themselves.
-#include <bionic_time.h>
+class SocketClientCommand {
+public:
+    virtual ~SocketClientCommand() { }
+    virtual void runSocketCommand(SocketClient *client) = 0;
+};
 
-#endif /* __CUTILS_TZTIME_H */ 
-
+#endif
