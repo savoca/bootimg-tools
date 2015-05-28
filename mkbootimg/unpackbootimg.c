@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <libgen.h>
+#include <sys/stat.h>
 
 #include "mincrypt/sha.h"
 #include "bootimg.h"
@@ -51,6 +52,7 @@ int main(int argc, char** argv)
     char tmp[PATH_MAX];
     char* directory = "./";
     char* filename = NULL;
+    struct stat d_st = {0};
     int pagesize = 0;
 
     argc--;
@@ -108,6 +110,9 @@ int main(int argc, char** argv)
     if (pagesize == 0) {
         pagesize = header.page_size;
     }
+
+    if (stat(directory, &d_st) == -1)
+        mkdir(directory, 0775);
     
     //printf("cmdline...\n");
     sprintf(tmp, "%s/%s", directory, basename(filename));
